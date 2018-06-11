@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Social Collaboration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../c_resources/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../c_resources/css/bootstrap.min.css.map" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style type="text/css">
+sup {
+	color: red;
+	font-size: 20px;
+}
+body {
+	background-image: url("c_resources/images/Background-1.jpg");
+	background-repeat:  no-repeat;
+	background-size: cover;
+}
+
+</style>
+
+</head>
+
+
+</style>
+
+</head>
+<body>
+	<div class="container">
+
+		<form class="well form-horizontal" action=" " method="post"
+			id="contact_form" ng-submit="registerUser()" role="form">
+			<fieldset>
+
+				<!-- Form Name -->
+				<center>
+					<legend>User Registration</legend>
+				</center>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label class="col-md-4 control-label">User name<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span>
+								 <input id="username"placeholder="User Name" 
+								 class="form-control" type="text" required="true" ng-model="user.username">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">E-Mail<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-envelope"></i></span> 
+								<input id="mail_id" placeholder="E-Mail Address" class="form-control" type="email"
+								 required="true" ng-model="user.mail_id">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">First Name<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span>
+								 <input id="first_name" placeholder="First name" class="form-control" type="text" 
+								 	required="true" ng-model="user.first_name">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Last Name<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span>
+								 <input id="last_name" placeholder="Last name" class="form-control" type="text" 
+								 	required="true" ng-model="user.last_name">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Date of Registration<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span>
+								 <input id="dateReg" class="form-control"
+								type="date" required="true" ng-model="user.dateReg">
+						</div>
+					</div>
+				</div>
+				
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Date of Birth<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span>
+								 <input id="dob" class="form-control"
+								type="date" required="true" ng-model="user.dob">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Password<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock"></i></span> 
+								<input name="password" id="password1" placeholder="Password" class="form-control" 
+								type="password" required="true" ng-model="user.password">
+						</div>
+					</div>
+				</div>
+				
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Confirm Password<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock"></i></span> <input id="password" id="password2"
+								placeholder="Confirm Password" class="form-control" 
+								type="password" required="true" ng-model="user.verifyPassword">
+						</div>
+					</div>
+				</div>
+
+				<!-- radio checks -->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Gender<sup>*</sup></label>
+					<div class="col-md-6">
+						Male: <input type="radio" name="gender" required="true" ng-model="user.gender"
+						 value="Male" checked="checked"/>
+						Female: <input type="radio" name="gender" required="true" ng-model="user.gender"
+						               value="Female"/>
+						
+					</div>
+				</div>
+				
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label class="col-md-4 control-label">Status<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-status"></i></span> 
+								<input id="status" placeholder="Status" class="form-control" type="text" 
+								required="true" ng-model="status">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<!-- <div class="form-group">
+					<label class="col-md-4 control-label">Role<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-home"></i></span> <input name="role"
+								placeholder="Role" class="form-control" type="text" required="true">
+						</div>
+					</div>
+				</div> -->
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label class="col-md-4 control-label">Mobile<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-phone"></i></span>
+								<input id="mobile" placeholder="Mobile" class="form-control"
+								 type="number" required="true" ng-model="user.mobile">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label class="col-md-4 control-label">Is On Line<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span>
+								<input id="isOnline" placeholder="Is On Line" class="form-control"
+								 type="text" required="true" ng-model="isOnline">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Reason</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pencil"></i></span> <input id="reason"
+								placeholder="Reason" class="form-control"
+								type="text" ng-model="user.reason">
+						</div>
+					</div>
+				</div>
+				
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Last Seen<sup>*</sup></label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> 
+								<input id="last_seen" placeholder="Last Seen" class="form-control"
+								type="date" required="true" ng-model="user.last_seen">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text area -->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Details</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pencil"></i></span>
+							<textarea class="form-control" name="details" id="details'
+								placeholder="Details" ng-model="user.details"></textarea>
+						</div>
+					</div>
+				</div>
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-4">
+						<button type="submit" class="btn btn-warning">
+							Register <span class="glyphicon glyphicon-send"></span>
+						</button>
+						<button type="reset" class="btn btn-danger">
+							Cancel <span class="glyphicon glyphicon-send"></span>
+						</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
+	</div>
+	</div>
+	<!-- /.container -->
+</body>
+
+</html>

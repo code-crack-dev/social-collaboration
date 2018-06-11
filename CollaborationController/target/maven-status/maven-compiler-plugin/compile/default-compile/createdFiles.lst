@@ -1,0 +1,11 @@
+com\koffi\collaboration\controller\BlogController.class
+com\koffi\collaboration\config\WebMVCApplicationInitializer.class
+com\koffi\collaboration\controller\JobAppliedController.class
+com\koffi\collaboration\controller\JobController.class
+com\koffi\collaboration\controller\FileUploadController.class
+com\koffi\collaboration\controller\ForumController.class
+com\koffi\collaboration\controller\ForumReplyController.class
+com\koffi\collaboration\controller\UserController.class
+com\koffi\collaboration\controller\FriendController.class
+util\Date_Time.class
+com\koffi\collaboration\config\ApplicationContextConfig.class

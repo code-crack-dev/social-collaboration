@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="collaboration" ng-controller="UserController">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta charset="UTF-8">
+<title>Social Collaboration</title>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+ --> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- <script type="text/javascript" src="c_resources/js/jquery-3.2.1.js"></script> -->
+<script type="text/javascript" src="c_resources/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="c_resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="c_resources/css/my.css">
+<link rel="stylesheet" href="c_resources/css/default.css">
+<link rel="stylesheet" href="c_resources/css/style.css">
+<link rel="stylesheet" href="c_resources/css/theme.css">
+
+ <script type="text/javascript" src="c_resources/js/angular.min.js"></script> 
+<script src="c_resources/js/angular-route.min.js"></script>
+<script src="c_resources/js/angular-cookies.js"></script>
+
+<script type="text/javascript" src="mainApp.js"></script>
+<script src="c_resources/js/sockjs.min.js"></script>
+<script src="c_resources/js/stomp.min.js"></script>
+
+<script type="text/javascript" src="c_user/UserController.js"></script>
+<script type="text/javascript" src="c_user/UserService.js"></script>
+<script type="text/javascript" src="c_user/UserListController.js"></script>
+<script type="text/javascript" src="c_blog/BlogController.js"></script>
+<script type="text/javascript" src="c_blog/BlogService.js"></script>
+<script type="text/javascript" src="c_forum/ForumController.js"></script>
+<script type="text/javascript" src="c_forum/ForumService.js"></script>
+<script type="text/javascript" src="c_friend/FriendController.js"></script>
+<script type="text/javascript" src="c_friend/FriendService.js"></script>
+<script type="text/javascript" src="c_admin/AdminController.js"></script>
+<script type="text/javascript" src="c_admin/AdminService.js"></script>
+
+<!-- <script type="text/javascript" src="c_job/JobController.js"></script>
+<script type="text/javascript" src="c_job/JobService.js"></script>
+<script type="text/javascript" src="c_event/EventController.js"></script>
+<script type="text/javascript" src="c_event/EventService.js"></script>
+<script type="text/javascript" src="c_chat/ChatService.js"></script>
+<script type="text/javascript" src="c_chat/ChatController.js"></script> -->
+
+<style>
+body {
+	background-image: url("c_resources/images/back3.jpg");
+	background-repeat: no-repeat;
+	opacity: 0.8;
+	background-size: cover;
+	padding-bottom: 75px;
+	background-attachment: fixed;
+}
+
+#nav1 {
+	background-color: red;
+}
+</style>
+</head>
+<body>
+	<div>
+		<nav class="navbar-fixed-top" style="background-color: #ff6666;">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<ul class="nav navbar-nav navbar-left">
+						<li><a href="#/"><img alt="Socila Collaboration"
+								src="c_resources/images/logo4.png" height="70" width="90"
+								style="position: absolute;"></a></li>
+						<li><font style="font-size: 70px"><a
+								class="navbar-brand" style="color: #ff0000;" href="#/"> <strong>HOME</strong></a></font></li>
+					</ul>
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+				</div>
+				<!--   Collect the nav links, forms, and other content for toggling 
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+ <ul class="nav navbar-nav navbar-right">
+      		<li>
+				<a class="navbar-brand" style="color:lightblue;" href="#/login" ><span class="glyphicon glyphicon-log-out"></span> LOGIN</a></li>
+			<li >
+				<a class="navbar-brand" style="color: lightblue;" href="#/register"><span class="glyphicon glyphicon-user"></span> SIGN UP</a></li>		
+	</ul> -->
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li data-ng-if="currentUser.role=='ADMIN'"><a
+							style="color: white" href="#/admin">Admin Management</a></li>
+						<li data-ng-show="currentUser.username"><img
+							data-ng-src="c_resources//images/{{currentUser.username}}"
+							onerror="this.src='c_resources/images/profilepic.png'"
+							class="img-circle" height="35" width="35"></li>
+						<li data-ng-show="currentUser.username"><a
+							style="color: white" href="#/myProfile"> Welcome,
+								{{currentUser.first_name}}</a></li>
+						<li data-ng-show="!currentUser.username"><a
+							style="color: white" href="#/login"><span
+								class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li data-ng-show="currentUser.username"><a
+							style="color: white" href="" data-ng-click="logout()"><span
+								class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+						<li data-ng-show="!currentUser.username"><a
+							style="color: white" href="#/register"><span
+								class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-left">
+						<!-- <li><a class="navbar-brand" style="color: #ffffff;"
+							href="#/viewBlogs">Blogs</a></li> -->
+						<li><a class="navbar-brand" style="color: #ffffff;"
+							href="#/viewBlogs">Blogs</a></li>
+						<li><a class="navbar-brand" style="color: #ffffff;"
+							href="#/viewForums">Forum</a></li>
+						<li><a class="navbar-brand" style="color: #ffffff;"
+							href="#/viewJobs">Job</a></li>
+						<li><a class="navbar-brand" style="color: #ffffff;"
+							href="#/viewEvents">Events</a></li>
+						<li ng-show="currentUser.username"><a style="color: white"
+							href="#/viewUsers"><span class="glyphicon glyphicon-user"></span>Search
+								User</a></li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+		<hr>
+		<br>
+	</div>
+
+	<div class="container" data-ng-view></div>
+
+	<nav class="navbar navbar-inverse navbar-fixed-bottom">
+		<!-- style="background-color: #17879d; color: white;" -->
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<marquee width="1400px" behavior="slide" direction="left"
+					scrollamount="7">
+					<h4 style="color: #ffffff;">Website developed and maintained by
+						Djaitai Koffi</h4>
+				</marquee>
+
+				<ul class="nav navbar-nav navbar-right" style="padding-right: 20px;">
+					<li class="dropup"><a style="color: white;"
+						class="dropdown-toggle" data-toggle="dropdown" href=""> <b>
+								Chat</b><span class="caret"></span></a>
+						<ul class="dropdown-menu" data-ng-controller="FriendController">
+							<li data-ng-repeat="f in friends">
+								<table>
+									<tr>
+										<td width="15px]"><img
+											data-ng-if="f.friendID==currentUser.username && f.userIsOnline=='Y'"
+											src="c_resources/images/isOnline.png" height="10px"
+											width="10px"> <img
+											data-ng-if="f.userID==currentUser.username && f.friendisOnline=='Y'"
+											src="c_resources/images/isOnline.png" height="10px"
+											width="10px"> <img
+											data-ng-if="f.friendID==currentUser.username && f.userIsOnline=='N'"
+											src="c_resources/images/isOffline.png" height="10px"
+											width="10px"> <img
+											data-ng-if="f.userID==currentUser.username && f.friendisOnline=='N'"
+											src="c_resources/images/isOffline.png" height="10px"
+											width="10px"></td>
+										<td><a data-ng-if="f.friendID==currentUser.username"
+											href="#/Chat">{{f.userFName}} {{f.userLName}}</a> <a
+											data-ng-if="f.userID==currentUser.username" href="#/Chat">{{f.friendFName}}
+												{{f.friendLName}}</a></td>
+									</tr>
+								</table>
+							</li>
+						</ul></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+</body>
+</html>
